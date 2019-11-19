@@ -119,13 +119,11 @@ def query4():
     docs = db.taxi.aggregate([
         {
             '$group': {
-                '_id': '$pickup',
+                '_id': {'$hour':'$pickup_datetime'},
                 'average_fare': {'$avg': "$fare_amount"},
-                'average_distance':
+                'average_distance': {'$avg': {'$add': [{'$abs': {'$subtract': ['$dropoff_longitude', '$pickup_longitude']}}, {'$abs': {'$subtract': ['$dropoff_latitude', '$pickup_latitude']}}]}},
+                'rides': {'$sum': 1}
             }
-        },
-        {
-            '$count': {}
         },
         {
 
