@@ -34,7 +34,7 @@ def query1(minFare, maxFare):
 
         {
             '_id': 0,
-            'pickup_longitube': 1,
+            'pickup_longitude': 1,
             'pickup_latitude': 1,
             'fare_amount': 1
         }
